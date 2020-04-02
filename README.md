@@ -2,7 +2,7 @@
 
 Playing around with rotations and quaternions. Also, trying out [pytest](https://docs.pytest.org/en/latest/contents.html). Euler angles used are in ZYX intrinsic order.
 
-![Slerping](vis.gif)
+![Slerping](media/vis.gif)
 
 ## Unit Testing
 
