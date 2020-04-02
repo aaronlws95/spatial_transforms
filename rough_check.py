@@ -63,7 +63,6 @@ if __name__ == '__main__':
     # print(aa1)
     # print(q4)
 
-
     # Check Quaternion multiplication/rotation
     # a1 = st.EulerAngle(30, 45, -60).to_rad()
     # q1 = a1.to_quat()
@@ -88,3 +87,16 @@ if __name__ == '__main__':
     # print(q4)
     # print(a3.to_deg())
 
+    # Check Vector to axis angle
+    # v1 = st.Vector3D(1, 1, 1)
+    # v2 = st.Vector3D(0, 0, 0)
+    # aa = v1.axis_angle(v2)
+    # aa.to_deg()
+    # print(aa)
+
+    # Check Vector quaternion rotation
+    # v1 = st.Vector3D(1, 0, 0)
+    # a1 = st.EulerAngle(0, 45, 0).to_rad()
+    # q1 = a1.to_quat()
+    # v2 = v1.rotate_by_quat(q1)
+    # print(v2)

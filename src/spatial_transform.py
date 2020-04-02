@@ -107,7 +107,7 @@ class EulerAngle:
         return EulerAngle(np.round(self.roll, n), np.round(self.pitch, n), np.round(self.yaw, n))
 
 class Quaternion:
-    def __init__(self, w, x, y, z):
+    def __init__(self, w=1, x=0, y=0, z=0):
         self.w = w
         self.x = x
         self.y = y
@@ -205,6 +205,12 @@ class Quaternion:
     def numpy(self):
         return np.asarray([self.w, self.x, self.y, self.z])
 
+    def from_numpy(self, array):
+        self.w = array[0]
+        self.x = array[1]
+        self.y = array[2]
+        self.z = array[3]
+
     def quat_mult(self, quat):
         w = quat.w * self.w - quat.x * self.x - quat.y * self.y - quat.z * self.z
         x = quat.w * self.x + quat.x * self.w + quat.z * self.y - quat.y * self.z
@@ -259,6 +265,9 @@ class Quaternion:
         mag = np.sqrt(self.x**2 + self.y**2 + self.z**2)
         angle = 2 * np.arccos(self.w)
         return AxisAngle(self.x / mag, self.y / mag, self.z / mag, angle)
+
+    def to_vector(self):
+        return Vector3D(self.x, self.y, self.z)
 
 class RotMat:
     def __init__(self, rotmat=np.identity(3)):
@@ -356,10 +365,10 @@ class AxisAngle:
     def __repr__(self):
         return 'x: {}, y: {}, z: {}, angle: {}'.format(self.x, self.y, self.z, self.angle)
 
-    def to_rad():
+    def to_rad(self):
         self.angle = self.angle * np.pi / 180
 
-    def to_deg():
+    def to_deg(self):
         self.angle = self.angle * 180 / np.pi
 
     def __eq__(self, other):
@@ -429,3 +438,37 @@ class AxisAngle:
 
     def round(self, n):
         return AxisAngle(np.round(self.x, n), np.round(self.y, n), np.round(self.z, n), np.round(self.angle, n))
+
+class Vector3D:
+    def __init__(self, x=0, y=0, z=0):
+        self.x = x
+        self.y = y
+        self.z = z
+
+    def __str__(self):
+        return '[{}, {}, {}]'.format(self.x, self.y, self.z)
+
+    def __repr__(self):
+        return '[{}, {}, {}]'.format(self.x, self.y, self.z)
+
+    def numpy(self):
+        return np.asarray([self.x, self.y, self.z])
+
+    def magnitude(self):
+        return np.sqrt(self.x**2 + self.y**2 + self.z**2)
+
+    def axis_angle(self, val):
+        axis = np.cross(self.numpy(), val.numpy())
+        angle = np.arccos(np.dot(self.numpy(), val.numpy()) / (self.magnitude() * val.magnitude() + 1e-10))
+        return AxisAngle(axis[0], axis[1], axis[2], angle).normalize()
+
+    def to_quat(self):
+        return Quaternion(0, self.x, self.y, self.z)
+
+    def round(self, n):
+        return Vector3D(np.round(self.x, n), np.round(self.y, n), np.round(self.z, n))
+
+    def rotate_by_quat(self, quat):
+        vq = self.to_quat()
+        rot_quat = quat.quat_mult(vq.quat_mult(quat.conjugate()))
+        return rot_quat.to_vector()
