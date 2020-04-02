@@ -1,0 +1,90 @@
+import numpy as np
+import pytest
+
+import src.spatial_transform as st
+
+if __name__ == '__main__':
+    # Check Euler conversion
+    # a1 = st.EulerAngle(30, 45, -60).to_rad()
+    # q1 = a1.to_quat().round(3)
+    # r1 = a1.to_rotmat()
+    # a2 = q1.to_euler()
+    # a3 = r1.to_euler()
+    # aa1 = a1.to_axis_angle()
+    # a4 = aa1.to_euler()
+    # print(a1)
+    # print(a1.to_deg())
+    # print(q1)
+    # print(r1)
+    # print(a2)
+    # print(a2.round(4).to_deg())
+    # print(a3)
+    # print(a3.round(4).to_deg())
+    # print(aa1)
+    # print(a4)
+
+    # Check Rotmat conversion
+    # a1 = st.EulerAngle(30, 45, -60).to_rad()
+    # r1 = a1.to_rotmat()
+    # q1 = r1.to_quat()
+    # a2 = r1.to_euler()
+    # r2 = q1.to_rotmat()
+    # r3 = a2.to_rotmat()
+    # aa1 = r1.to_axis_angle()
+    # r4 = aa1.to_rotmat()
+    # print(a1)
+    # print(a1.to_deg())
+    # print(r1)
+    # print(q1)
+    # print(a2)
+    # print(a2.to_deg())
+    # print(r2)
+    # print(r3)
+    # print(aa1)
+    # print(r4)
+
+    # Check Quaternion conversion
+    # a1 = st.EulerAngle(30, 45, -60).to_rad()
+    # q1 = a1.to_quat()
+    # a2 = q1.to_euler()
+    # r1 = q1.to_rotmat()
+    # q2 = a2.to_quat()
+    # q3 = r1.to_quat()
+    # aa1 = q1.to_axis_angle()
+    # q4 = aa1.to_quat()
+    # print(a1)
+    # print(a1.to_deg())
+    # print(q1)
+    # print(a2)
+    # print(a2.to_deg())
+    # print(r1)
+    # print(q2)
+    # print(q3)
+    # print(aa1)
+    # print(q4)
+
+
+    # Check Quaternion multiplication/rotation
+    # a1 = st.EulerAngle(30, 45, -60).to_rad()
+    # q1 = a1.to_quat()
+    # a2 = st.EulerAngle(30, 0, 0).to_rad()
+    # q2 = a2.to_quat()
+    # q3 = q1.quat_mult(q2)
+    # a3 = q3.to_euler()
+    # print(q1)
+    # print(q2)
+    # print(q3)
+    # print(a3.to_deg())
+
+    # Check Quaternion inverse multiplcation
+    # a1 = st.EulerAngle(30, 45, -60).to_rad()
+    # q1 = a1.to_quat()
+    # a2 = st.EulerAngle(30, 0, 0).to_rad()
+    # q2 = a2.to_quat()
+    # q3 = q1.quat_mult(q2)
+    # q4 = q3.quat_mult(q2.inverse())
+    # a3 = q4.to_euler()
+    # print(q1)
+    # print(q4)
+    # print(a3.to_deg())
+
